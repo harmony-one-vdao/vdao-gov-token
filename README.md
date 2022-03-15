@@ -9,7 +9,7 @@
 1. run `./scripts/py/save_stake_amounts.py` file to gather amounts
 2. check the file in `./scripts/py/data/TODAYS_DATE.csv`
 3. run `npx hardhat run ./scripts/update_amounts.js --network testnet` OR `--network mainnet`
-4. Analysis results.
+4. Analyse results.
 
 
 # Setup local
