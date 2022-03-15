@@ -18,4 +18,3 @@ def save_js(fn: str, validators: list, amount_staked: list) -> None:
     with open(fn, "w") as f:
         f.write(cons)
 
-# save_js(['asdasd', 'bdsbsbdsb'], ["1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","11111"])
