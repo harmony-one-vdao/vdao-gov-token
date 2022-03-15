@@ -128,5 +128,6 @@ Example:
 ```
 
 # Flatten
-npx hardhat flatten ./contracts/VdaoGovToken.sol > ./flattened/VdaoGovToken-flat.sol
+
+`npx hardhat flatten ./contracts/VdaoGovToken.sol > ./flattened/VdaoGovToken-flat.sol`
 
