@@ -33,15 +33,3 @@ def convert_one_to_hex(addr: str) -> str:
     buf = convertbits(data, 5, 8, False)
     address = "0x" + "".join("{:02x}".format(x) for x in buf)
     return to_checksum_address(address)
-
-
-if __name__ == "__main__":
-    eth_add = "0x185877050ccFDa4D1d28Cff047FE84237C97405E"
-    one_add = "one1cwsf0lrq0hzphqa79q8pwrn6pnzzhwej4tqen3"
-    converted_to_eth = convert_one_to_hex(one_add)
-    print(converted_to_eth)
-    print(converted_to_eth == eth_add)
-
-    # converted_to_one = bech32_decode(eth_add)
-    # log.info(converted_to_one)
-    # log.info(converted_to_one == one_add)
