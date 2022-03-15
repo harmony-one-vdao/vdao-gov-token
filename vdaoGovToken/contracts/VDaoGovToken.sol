@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 // Maffaz.One 2022
 // john@maffaz.com
-// WhaleBattle v2.0.0
+// Validator Dao Governance Token v2.0.0
+
 pragma solidity ^0.8.12;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
