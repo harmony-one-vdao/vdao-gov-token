@@ -1,6 +1,6 @@
 #Custom
-vdaoGovToken\artifacts
-vdaoGovToken\cache
+vdaoGovToken/artifacts/
+vdaoGovToken/cache/
 
 # Logs
 logs
