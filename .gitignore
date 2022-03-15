@@ -1,3 +1,7 @@
+#Custom
+artifacts/
+cache/
+
 # Logs
 logs
 *.log
