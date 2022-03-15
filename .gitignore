@@ -1,6 +1,6 @@
 #Custom
-artifacts/
-cache/
+artifacts
+cache
 
 # Logs
 logs
