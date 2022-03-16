@@ -50,10 +50,7 @@ def yield_data(num_pages: int = 100) -> tuple:
 
 def save_csv(fn: str, data: list, header: list, inc: int = 1) -> None:
     try:
-        with open(fn,
-                  "w",
-                  newline="",
-                  encoding="utf-8") as csvfile:
+        with open(fn, "w", newline="", encoding="utf-8") as csvfile:
             w = csv.DictWriter(csvfile, fieldnames=header, delimiter=",")
             w.writeheader()
             for x in data:
@@ -94,6 +91,7 @@ def parse_data():
 
     js_fn = os.path.join(file_path, '..', "js", "constants.js")
     save_js(js_fn, validators, amounts)
+
 
 if __name__ == "__main__":
     parse_data()
