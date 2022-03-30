@@ -3,7 +3,7 @@
 **Contracts**
 
 **TestNet**: *0x7E3074Da5CF3B2B9b93248D95A4D5Ac03d8d0e9D*
-**MainNet** : *TBA*
+**MainNet** : *0x03FaF53b8Add920261CF34BcD7c68583eEc05281*
 # Update with new amounts 
 
 1. run `./scripts/py/save_stake_amounts.py` file to gather amounts
