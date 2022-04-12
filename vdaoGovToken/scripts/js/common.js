@@ -59,17 +59,17 @@ async function airdropOne(_address) {
     // ONE  amount to send
     let amountInOne = '0.2'
     try {
-    tx = await owner.sendTransaction({
-      to: _address,
-      // Convert currency unit from ether to wei
-      value: ethers.utils.parseEther(amountInOne)
-    })  
-  
+        tx = await owner.sendTransaction({
+            to: _address,
+            // Convert currency unit from ether to wei
+            value: ethers.utils.parseEther(amountInOne)
+        })
+
     } catch (error) {
-      console.error(`Error sending ONE: ${error.error}`)
+        console.error(`Error sending ONE: ${error.error}`)
     }
     await callFunctionWithEvent(tx, "Transfer")
-  }
+}
 
 async function addAddressesLoop() {
 
@@ -97,11 +97,37 @@ async function attachAddressToContract(contractName, contractAddress) {
     return contract
 }
 
+
+async function calcQuorumFromSupply(_totalSupply) {
+
+    // Quorum check
+    q = await vdaogovToken._quorumPercentage()
+    qPerc = ethers.BigNumber.from(_totalSupply).div(100)
+    console.log(qPerc)
+    qPercQuorum = ethers.BigNumber.from(qPerc).mul(q)
+    console.log(qPercQuorum)
+    qPercOne = ethers.utils.formatEther(qPercQuorum)
+
+    _quorum = await vdaogovToken.quorumAmount()
+    _quorumOne = ethers.utils.formatEther(_quorum)
+    console.log(`Quorum check WEI: expected ${qPercQuorum}  | actual ${ethers.BigNumber.from(_quorum).mul(1)}    | ${qPercQuorum == _quorum}`)
+    console.log(`Quorum check ONE: expected ${qPercOne}     | actual ${_quorumOne} | ${qPercOne == _quorumOne}`)
+}
+
+async function supplyCheck() {
+    // total supply check
+    _totalSupply = await vdaogovToken.totalSupply()
+    console.log(`Total Supply check: expected ${totalSupply} | actual ${_totalSupply}`)
+    return _totalSupply
+}
+
 module.exports = {
     deployToken: deployToken,
     callFunctionWithEvent: callFunctionWithEvent,
     UpdateAmounts: UpdateAmounts,
     checkBalances: checkBalances,
     attachAddressToContract: attachAddressToContract,
-    addAddressesLoop: addAddressesLoop
+    addAddressesLoop: addAddressesLoop,
+    calcQuorumFromSupply: calcQuorumFromSupply,
+    supplyCheck: supplyCheck
 }

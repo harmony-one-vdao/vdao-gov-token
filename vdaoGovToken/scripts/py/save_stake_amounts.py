@@ -59,26 +59,29 @@ def save_csv(fn: str, data: list, header: list, inc: int = 1) -> None:
         save_csv(f"{inc}-{fn}", data, header, inc=inc + 1)
 
 
-def parse_data():
+def parse_data(zero_all=False):
     now = datetime.now().strftime("%d-%m-%y")
     csv_data = []
     validators = []
     amounts = []
     for y in yield_data(num_pages=pages):
         v, e = y
+        amount = e.total_delegation
+        if zero_all:
+            amount = 0
 
         if e.active_status == "active":
             address = convert_one_to_hex(v.address)
             w = {
                 "One Address": v.address,
                 "0xAddress": address,
-                "StakedWei": e.total_delegation,
-                "StakedONE": f"{round(float(e.total_delegation) / places):,}",
+                "StakedWei": amount,
+                "StakedONE": f"{round(float(amount) / places):,}",
             }
             if w not in csv_data:
                 csv_data.append(w)
                 validators.append(address)
-                amounts.append(f"{e.total_delegation}")
+                amounts.append(f"{amount}")
 
     file_path = pathlib.Path(__file__).parent.resolve()
     fn = os.path.join(file_path, "data", f"{now}.csv")
@@ -94,4 +97,6 @@ def parse_data():
 
 
 if __name__ == "__main__":
-    parse_data()
+    parse_data(
+        zero_all=False
+        )

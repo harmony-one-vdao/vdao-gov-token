@@ -3,7 +3,7 @@ common = require("./js/common");
 logFile = require("./js/logFile");
 
 logFile.consoleLogToFile({
-    logFilePath: "./logs/deploy.log",
+  logFilePath: "./logs/deploy.log",
 });
 
 owner = '0x4F966e4DB9d4a9dD22bb19CBe4f7Bd9d75eE6254';
@@ -32,9 +32,8 @@ async function main() {
 
   console.log(`Anything not correct?\n ${notCorrect}`)
 
-  // total supply check
-  _totalSupply = await vdaogovToken.totalSupply()
-  console.log(`Total Supply check: expected ${totalSupply} | actual ${_totalSupply}`)
+  _totalSupply = await common.supplyCheck()
+  await common.calcQuorumFromSupply(_totalSupply)
 
   logContractAddresses()
 }

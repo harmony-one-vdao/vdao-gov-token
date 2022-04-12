@@ -1,0 +1,18 @@
+{
+    "address": "0x808d9C84Bd4886BB8B40A06E4F50F8Ee45E3D9c4",
+    "decimals": 18,
+    "strategy": "balance",
+    "methodABI": {
+        "inputs": [],
+        "name": "quorumAmount",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+}

@@ -11,11 +11,16 @@ contract VDaoGovToken is Ownable {
     mapping(address => uint256) private _balances;
 
     uint256 private _totalSupply;
+    uint8 public _quorumPercentage = 51;
 
     string private _name;
     string private _symbol;
 
-    event AmountsUpdated(bool Result, uint totalSupply, uint numberAddressesUpdated);
+    event AmountsUpdated(
+        bool Result,
+        uint256 totalSupply,
+        uint256 numberAddressesUpdated
+    );
 
     constructor() {
         _name = "Validator Dao Governance Token";
@@ -44,11 +49,22 @@ contract VDaoGovToken is Ownable {
         return _balances[account];
     }
 
+    function setQuorumPercentage(uint8 _quorum) public onlyOwner {
+        require(_quorum <= 100, "Max 100%");
+        _quorumPercentage = _quorum;
+    }
+
+    // calculate Quorum of the total current supply
+    function quorumAmount() public view returns (uint256) {
+        uint256 supply = totalSupply();
+        return (supply / 100) * _quorumPercentage;
+    }
+
     // Update Token amounts by amount staked
     function setAmountStakedByAddress(
         address[] memory _validators,
         uint256[] memory _amounts
-    ) public onlyOwner returns(bool){
+    ) public onlyOwner returns (bool) {
         require(_validators.length == _amounts.length, "Lengths do not match");
         _totalSupply = 0;
         uint256 totalSupply;

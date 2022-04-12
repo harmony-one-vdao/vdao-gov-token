@@ -25,7 +25,7 @@ module.exports = {
       accounts: [`0x${PRIVATE_KEY_TESTNET}`]
     },
     mainnet: {
-      url: `https://harmony-0-rpc.gateway.pokt.network`,
+      url: `https://rpc.hermesdefi.io`,
       accounts: [`0x${PRIVATE_KEY_MAINNET}`]
     }
   }
